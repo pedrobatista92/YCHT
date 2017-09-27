@@ -2437,9 +2437,9 @@ bool LoadBlockIndex(bool fAllowNew)
         if (!fAllowNew)
             return false;
 
-        const char *pszTimestamp = "Cloudy with a 40% chance of precipitation";
+        const char *pszTimestamp = "First day of the YCHT Blockchain";
         CTransaction txNew;
-        txNew.nTime = 1492648100;
+        txNew.nTime = 1506523871;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 0 << CBigNum(42) << vector<unsigned char>((const unsigned char *)pszTimestamp, (const unsigned char *)pszTimestamp + strlen(pszTimestamp));
@@ -2450,9 +2450,9 @@ bool LoadBlockIndex(bool fAllowNew)
         block.hashPrevBlock = 0;
         block.hashMerkleRoot = block.BuildMerkleTree();
         block.nVersion = 1;
-        block.nTime = 1492648100;
+        block.nTime = 1506523871;
         block.nBits = bnProofOfWorkLimit.GetCompact();
-        block.nNonce = !fTestNet ? 2904155 : 2904155;
+        block.nNonce = !fTestNet ? 0 : 0;
 
         //        hashGenesisBlock = block.GetHash();
 
@@ -2463,7 +2463,7 @@ bool LoadBlockIndex(bool fAllowNew)
         printf("block.nNonce = %u \n", block.nNonce);
         block.print();
         //        assert(block.hashMerkleRoot == uint256("0x"));
-        assert(block.hashMerkleRoot == uint256("0x7a61ff14d15fc4012428b95e91512f05271da4e4618fe4776beeca2faf42799b"));
+        assert(block.hashMerkleRoot == uint256("0x0"));
         assert(block.GetHash() == (!fTestNet ? hashGenesisBlock : hashGenesisBlockTestNet));
 
         // Start new block file

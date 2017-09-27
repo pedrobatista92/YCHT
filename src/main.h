@@ -44,8 +44,8 @@ static const unsigned int LOCKTIME_THRESHOLD = 500000000; // Tue Nov  5 00:53:20
 // static const uint256 hashGenesisBlock("0x00000214a121e055869d35aa132433027b11242914a7f5910327b123d6939d7b");
 // static const uint256 hashGenesisBlockTestNet("0x00000214a121e055869d35aa132433027b11242914a7f5910327b123d6939d7b");
 
-static const uint256 hashGenesisBlock("0x0BwULKWixA1rGV4G1qgnf3EaMYEyuoHHbJK3rg4EFM1hwDgNjM8fKbO3IziG9lLa");
-static const uint256 hashGenesisBlockTestNet("0x0RFsRa1iPT6jdju9uFsS9OqdIspK8X4wZIfV4lcB1EqXWBTaP2DBCXyu2LdfgIbn");
+static const uint256 hashGenesisBlock("0x0");
+static const uint256 hashGenesisBlockTestNet("0x0");
 
 inline int64_t PastDrift(int64_t nTime) { return nTime - 30 * 60; }   // up to 30 minutes from the past
 inline int64_t FutureDrift(int64_t nTime) { return nTime + 30 * 60; } // up to 30 minutes from the future
