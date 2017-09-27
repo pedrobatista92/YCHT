@@ -1,0 +1,2 @@
+debian/bin/YCHTd usr/bin
+src/YCHTd usr/lib/YCHT

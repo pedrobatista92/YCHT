@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=YCHT
+Comment=YCHT P2P Cryptocurrency
+Comment[fr]=YCHT, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=YCHT, eşten eşe kriptografik sanal para birimi
+Exec=/usr/bin/YCHT-qt
+Terminal=false
+Type=Application
+Icon=/usr/share/pixmaps/bitcoin80.xpm
+MimeType=x-scheme-handler/YCHT;
+Categories=Office;
