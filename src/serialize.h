@@ -742,7 +742,7 @@ struct ser_streamplaceholder
     int nVersion;
 };
 
-typedef std::vector<char, zero_after_free_allocator<char>> CSerializeData;
+typedef std::vector<char, zero_after_free_allocator<char> > CSerializeData;
 
 /** Double ended buffer combining vector and stream-like interfaces.
  *

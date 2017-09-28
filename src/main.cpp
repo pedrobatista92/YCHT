@@ -33,7 +33,7 @@ CTxMemPool mempool;
 unsigned int nTransactionsUpdated = 0;
 
 map<uint256, CBlockIndex *> mapBlockIndex;
-set<pair<COutPoint, unsigned int>> setStakeSeen;
+set<pair<COutPoint, unsigned int> > setStakeSeen;
 
 CBigNum bnProofOfWorkLimit(~uint256(0) >> 20); // "standard" target limit for proof of work, results with 0,000244140625 proof-of-work difficulty
 CBigNum bnProofOfStakeLimit(~uint256(0) >> 20);
@@ -60,10 +60,10 @@ CMedianFilter<int> cPeerBlockCounts(5, 0); // Amount of blocks that other nodes 
 
 map<uint256, CBlock *> mapOrphanBlocks;
 multimap<uint256, CBlock *> mapOrphanBlocksByPrev;
-set<pair<COutPoint, unsigned int>> setStakeSeenOrphan;
+set<pair<COutPoint, unsigned int> > setStakeSeenOrphan;
 
 map<uint256, CTransaction> mapOrphanTransactions;
-map<uint256, set<uint256>> mapOrphanTransactionsByPrev;
+map<uint256, set<uint256> > mapOrphanTransactionsByPrev;
 
 // Constant stuff for coinbase transactions we create:
 CScript COINBASE_FLAGS;
@@ -370,7 +370,7 @@ bool CTransaction::AreInputsStandard(const MapPrevTx &mapInputs) const
     {
         const CTxOut &prev = GetOutputFor(vin[i], mapInputs);
 
-        vector<vector<unsigned char>> vSolutions;
+        vector<vector<unsigned char> > vSolutions;
         txnouttype whichType;
         // get the scriptPubKey corresponding to this input:
         const CScript &prevScript = prev.scriptPubKey;
@@ -385,7 +385,7 @@ bool CTransaction::AreInputsStandard(const MapPrevTx &mapInputs) const
         // be quick, because if there are any operations
         // beside "push data" in the scriptSig the
         // IsStandard() call returns false
-        vector<vector<unsigned char>> stack;
+        vector<vector<unsigned char> > stack;
         if (!EvalScript(stack, vin[i].scriptSig, *this, i, 0))
             return false;
 
@@ -394,7 +394,7 @@ bool CTransaction::AreInputsStandard(const MapPrevTx &mapInputs) const
             if (stack.empty())
                 return false;
             CScript subscript(stack.back().begin(), stack.back().end());
-            vector<vector<unsigned char>> vSolutions2;
+            vector<vector<unsigned char> > vSolutions2;
             txnouttype whichType2;
             if (!Solver(subscript, whichType2, vSolutions2))
                 return false;
@@ -2454,7 +2454,7 @@ bool LoadBlockIndex(bool fAllowNew)
         block.nBits = bnProofOfWorkLimit.GetCompact();
         block.nNonce = !fTestNet ? 0 : 0;
 
-        //        hashGenesisBlock = block.GetHash();
+        if (true && block.GetHash() != hashGenesisBlock)
 
         //// debug print
         printf("block.GetHash() == %s\n", block.GetHash().ToString().c_str());
@@ -2463,7 +2463,7 @@ bool LoadBlockIndex(bool fAllowNew)
         printf("block.nNonce = %u \n", block.nNonce);
         block.print();
         //        assert(block.hashMerkleRoot == uint256("0x"));
-        assert(block.hashMerkleRoot == uint256("0x0"));
+        assert(block.hashMerkleRoot == uint256("0x7a61ff14d15fc4012428b95e91512f05271da4e4618fe4776beeca2faf42799b"));
         assert(block.GetHash() == (!fTestNet ? hashGenesisBlock : hashGenesisBlockTestNet));
 
         // Start new block file
@@ -2500,7 +2500,7 @@ void PrintBlockTree()
 {
     AssertLockHeld(cs_main);
     // pre-compute tree structure
-    map<CBlockIndex *, vector<CBlockIndex *>> mapNext;
+    map<CBlockIndex *, vector<CBlockIndex *> > mapNext;
     for (map<uint256, CBlockIndex *>::iterator mi = mapBlockIndex.begin(); mi != mapBlockIndex.end(); ++mi)
     {
         CBlockIndex *pindex = (*mi).second;
@@ -2510,7 +2510,7 @@ void PrintBlockTree()
         //    mapNext[pindex->pprev].push_back(pindex);
     }
 
-    vector<pair<int, CBlockIndex *>> vStack;
+    vector<pair<int, CBlockIndex *> > vStack;
     vStack.push_back(make_pair(0, pindexGenesisBlock));
 
     int nPrevCol = 0;

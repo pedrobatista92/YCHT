@@ -116,7 +116,7 @@ inline void MilliSleep(int64_t n)
 #endif
 
 extern std::map<std::string, std::string> mapArgs;
-extern std::map<std::string, std::vector<std::string>> mapMultiArgs;
+extern std::map<std::string, std::vector<std::string> > mapMultiArgs;
 extern bool fDebug;
 extern bool fDebugNet;
 extern bool fDebugSmsg;
@@ -193,7 +193,7 @@ boost::filesystem::path GetPidFile();
 #ifndef WIN32
 void CreatePidFile(const boost::filesystem::path &path, pid_t pid);
 #endif
-void ReadConfigFile(std::map<std::string, std::string> &mapSettingsRet, std::map<std::string, std::vector<std::string>> &mapMultiSettingsRet);
+void ReadConfigFile(std::map<std::string, std::string> &mapSettingsRet, std::map<std::string, std::vector<std::string> > &mapMultiSettingsRet);
 #ifdef WIN32
 boost::filesystem::path GetSpecialFolderPath(int nFolder, bool fCreate = true);
 #endif

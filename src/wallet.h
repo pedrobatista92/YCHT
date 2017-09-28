@@ -72,8 +72,8 @@ class CKeyPool
 class CWallet : public CCryptoKeyStore
 {
   private:
-    bool SelectCoinsForStaking(int64_t nTargetValue, unsigned int nSpendTime, std::set<std::pair<const CWalletTx *, unsigned int>> &setCoinsRet, int64_t &nValueRet) const;
-    bool SelectCoins(int64_t nTargetValue, unsigned int nSpendTime, std::set<std::pair<const CWalletTx *, unsigned int>> &setCoinsRet, int64_t &nValueRet, const CCoinControl *coinControl = NULL) const;
+    bool SelectCoinsForStaking(int64_t nTargetValue, unsigned int nSpendTime, std::set<std::pair<const CWalletTx *, unsigned int> > &setCoinsRet, int64_t &nValueRet) const;
+    bool SelectCoins(int64_t nTargetValue, unsigned int nSpendTime, std::set<std::pair<const CWalletTx *, unsigned int> > &setCoinsRet, int64_t &nValueRet, const CCoinControl *coinControl = NULL) const;
 
     CWalletDB *pwalletdbEncryption;
 
@@ -145,7 +145,7 @@ class CWallet : public CCryptoKeyStore
 
     void AvailableCoinsForStaking(std::vector<COutput> &vCoins, unsigned int nSpendTime) const;
     void AvailableCoins(std::vector<COutput> &vCoins, bool fOnlyConfirmed = true, const CCoinControl *coinControl = NULL) const;
-    bool SelectCoinsMinConf(int64_t nTargetValue, unsigned int nSpendTime, int nConfMine, int nConfTheirs, std::vector<COutput> vCoins, std::set<std::pair<const CWalletTx *, unsigned int>> &setCoinsRet, int64_t &nValueRet) const;
+    bool SelectCoinsMinConf(int64_t nTargetValue, unsigned int nSpendTime, int nConfMine, int nConfTheirs, std::vector<COutput> vCoins, std::set<std::pair<const CWalletTx *, unsigned int> > &setCoinsRet, int64_t &nValueRet) const;
 
     // keystore implementation
     // Generate a new key
@@ -206,7 +206,7 @@ class CWallet : public CCryptoKeyStore
     int64_t GetImmatureBalance() const;
     int64_t GetStake() const;
     int64_t GetNewMint() const;
-    bool CreateTransaction(const std::vector<std::pair<CScript, int64_t>> &vecSend, CWalletTx &wtxNew, CReserveKey &reservekey, int64_t &nFeeRet, int32_t &nChangePos, const CCoinControl *coinControl = NULL);
+    bool CreateTransaction(const std::vector<std::pair<CScript, int64_t> > &vecSend, CWalletTx &wtxNew, CReserveKey &reservekey, int64_t &nFeeRet, int32_t &nChangePos, const CCoinControl *coinControl = NULL);
     bool CreateTransaction(CScript scriptPubKey, int64_t nValue, std::string &sNarr, CWalletTx &wtxNew, CReserveKey &reservekey, int64_t &nFeeRet, const CCoinControl *coinControl = NULL);
     bool CommitTransaction(CWalletTx &wtxNew, CReserveKey &reservekey);
 
@@ -236,7 +236,7 @@ class CWallet : public CCryptoKeyStore
     int64_t GetOldestKeyPoolTime();
     void GetAllReserveKeys(std::set<CKeyID> &setAddress) const;
 
-    std::set<std::set<CTxDestination>> GetAddressGroupings();
+    std::set<std::set<CTxDestination> > GetAddressGroupings();
     std::map<CTxDestination, int64_t> GetAddressBalances();
 
     bool IsMine(const CTxIn &txin) const;
@@ -415,7 +415,7 @@ class CWalletTx : public CMerkleTx
   public:
     std::vector<CMerkleTx> vtxPrev;
     mapValue_t mapValue;
-    std::vector<std::pair<std::string, std::string>> vOrderForm;
+    std::vector<std::pair<std::string, std::string> > vOrderForm;
     unsigned int fTimeReceivedIsTxTime;
     unsigned int nTimeReceived; // time received by this node
     unsigned int nTimeSmart;
@@ -658,8 +658,8 @@ class CWalletTx : public CMerkleTx
         return nChangeCached;
     }
 
-    void GetAmounts(std::list<std::pair<CTxDestination, int64_t>> &listReceived,
-                    std::list<std::pair<CTxDestination, int64_t>> &listSent, int64_t &nFee, std::string &strSentAccount) const;
+    void GetAmounts(std::list<std::pair<CTxDestination, int64_t> > &listReceived,
+                    std::list<std::pair<CTxDestination, int64_t> > &listSent, int64_t &nFee, std::string &strSentAccount) const;
 
     void GetAccountAmounts(const std::string &strAccount, int64_t &nReceived,
                            int64_t &nSent, int64_t &nFee) const;

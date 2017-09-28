@@ -59,7 +59,7 @@ std::string to_internal(const std::string &);
 using namespace std;
 
 map<string, string> mapArgs;
-map<string, vector<string>> mapMultiArgs;
+map<string, vector<string> > mapMultiArgs;
 bool fDebug = false;
 bool fDebugNet = false;
 bool fDebugSmsg = false;
@@ -1045,7 +1045,7 @@ boost::filesystem::path GetConfigFile()
 }
 
 void ReadConfigFile(map<string, string> &mapSettingsRet,
-                    map<string, vector<string>> &mapMultiSettingsRet)
+                    map<string, vector<string> > &mapMultiSettingsRet)
 {
     boost::filesystem::ifstream streamConfig(GetConfigFile());
     if (!streamConfig.good())

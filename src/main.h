@@ -53,7 +53,7 @@ inline int64_t FutureDrift(int64_t nTime) { return nTime + 30 * 60; } // up to 3
 extern CScript COINBASE_FLAGS;
 extern CCriticalSection cs_main;
 extern std::map<uint256, CBlockIndex *> mapBlockIndex;
-extern std::set<std::pair<COutPoint, unsigned int>> setStakeSeen;
+extern std::set<std::pair<COutPoint, unsigned int> > setStakeSeen;
 extern CBlockIndex *pindexGenesisBlock;
 extern unsigned int nTargetSpacing;
 extern unsigned int nStakeMinAge;
@@ -411,7 +411,7 @@ enum GetMinFee_mode
     GMF_SEND,
 };
 
-typedef std::map<uint256, std::pair<CTxIndex, CTransaction>> MapPrevTx;
+typedef std::map<uint256, std::pair<CTxIndex, CTransaction> > MapPrevTx;
 
 /** The basic transaction that is broadcasted on the network and contained in
  * blocks.  A transaction can contain multiple inputs and outputs.

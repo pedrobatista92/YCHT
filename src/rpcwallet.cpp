@@ -580,8 +580,8 @@ Value getbalance(const Array &params, bool fHelp)
 
             int64_t allFee;
             string strSentAccount;
-            list<pair<CTxDestination, int64_t>> listReceived;
-            list<pair<CTxDestination, int64_t>> listSent;
+            list<pair<CTxDestination, int64_t> > listReceived;
+            list<pair<CTxDestination, int64_t> > listSent;
             wtx.GetAmounts(listReceived, listSent, allFee, strSentAccount);
             if (wtx.GetDepthInMainChain() >= nMinDepth && wtx.GetBlocksToMaturity() == 0)
             {
@@ -724,7 +724,7 @@ Value sendmany(const Array &params, bool fHelp)
         wtx.mapValue["comment"] = params[3].get_str();
 
     set<CBitcoinAddress> setAddress;
-    vector<pair<CScript, int64_t>> vecSend;
+    vector<pair<CScript, int64_t> > vecSend;
 
     int64_t totalAmount = 0;
     BOOST_FOREACH (const Pair &s, sendTo)
@@ -1011,8 +1011,8 @@ void ListTransactions(const CWalletTx &wtx, const string &strAccount, int nMinDe
 {
     int64_t nFee;
     string strSentAccount;
-    list<pair<CTxDestination, int64_t>> listReceived;
-    list<pair<CTxDestination, int64_t>> listSent;
+    list<pair<CTxDestination, int64_t> > listReceived;
+    list<pair<CTxDestination, int64_t> > listSent;
 
     wtx.GetAmounts(listReceived, listSent, nFee, strSentAccount);
 
@@ -1182,8 +1182,8 @@ Value listaccounts(const Array &params, bool fHelp)
         const CWalletTx &wtx = (*it).second;
         int64_t nFee;
         string strSentAccount;
-        list<pair<CTxDestination, int64_t>> listReceived;
-        list<pair<CTxDestination, int64_t>> listSent;
+        list<pair<CTxDestination, int64_t> > listReceived;
+        list<pair<CTxDestination, int64_t> > listSent;
         int nDepth = wtx.GetDepthInMainChain();
         if (nDepth < 0)
             continue;

@@ -98,7 +98,7 @@ Value getworkex(const Array &params, bool fHelp)
     if (pindexBest->nHeight >= LAST_POW_BLOCK)
         throw JSONRPCError(RPC_MISC_ERROR, "No more PoW blocks");
 
-    typedef map<uint256, pair<CBlock *, CScript>> mapNewBlock_t;
+    typedef map<uint256, pair<CBlock *, CScript> > mapNewBlock_t;
     static mapNewBlock_t mapNewBlock;
     static vector<CBlock *> vNewBlock;
     static CReserveKey reservekey(pwalletMain);
@@ -231,7 +231,7 @@ Value getwork(const Array &params, bool fHelp)
     if (pindexBest->nHeight >= LAST_POW_BLOCK)
         throw JSONRPCError(RPC_MISC_ERROR, "No more PoW blocks");
 
-    typedef map<uint256, pair<CBlock *, CScript>> mapNewBlock_t;
+    typedef map<uint256, pair<CBlock *, CScript> > mapNewBlock_t;
     static mapNewBlock_t mapNewBlock; // FIXME: thread safety
     static vector<CBlock *> vNewBlock;
     static CReserveKey reservekey(pwalletMain);

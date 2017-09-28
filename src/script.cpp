@@ -443,7 +443,7 @@ static bool IsCanonicalSignature(const valtype &vchSig)
     return true;
 }
 
-bool EvalScript(vector<vector<unsigned char>> &stack, const CScript &script, const CTransaction &txTo, unsigned int nIn, int nHashType)
+bool EvalScript(vector<vector<unsigned char> > &stack, const CScript &script, const CTransaction &txTo, unsigned int nIn, int nHashType)
 {
     CAutoBN_CTX pctx;
     CScript::const_iterator pc = script.begin();
@@ -1356,7 +1356,7 @@ class CSignatureCache
 {
   private:
     // sigdata_type is (signature hash, signature, public key):
-    typedef boost::tuple<uint256, std::vector<unsigned char>, std::vector<unsigned char>> sigdata_type;
+    typedef boost::tuple<uint256, std::vector<unsigned char>, std::vector<unsigned char> > sigdata_type;
     std::set<sigdata_type> setValid;
     CCriticalSection cs_sigcache;
 
@@ -1438,7 +1438,7 @@ bool CheckSig(vector<unsigned char> vchSig, vector<unsigned char> vchPubKey, CSc
 //
 // Return public keys or hashes from scriptPubKey, for 'standard' transaction types.
 //
-bool Solver(const CScript &scriptPubKey, txnouttype &typeRet, vector<vector<unsigned char>> &vSolutionsRet)
+bool Solver(const CScript &scriptPubKey, txnouttype &typeRet, vector<vector<unsigned char> > &vSolutionsRet)
 {
     // Templates
     static multimap<txnouttype, CScript> mTemplates;
@@ -1634,7 +1634,7 @@ bool Solver(const CKeyStore &keystore, const CScript &scriptPubKey, uint256 hash
     return false;
 }
 
-int ScriptSigArgsExpected(txnouttype t, const std::vector<std::vector<unsigned char>> &vSolutions)
+int ScriptSigArgsExpected(txnouttype t, const std::vector<std::vector<unsigned char> > &vSolutions)
 {
     switch (t)
     {
@@ -1858,7 +1858,7 @@ bool ExtractDestinations(const CScript &scriptPubKey, txnouttype &typeRet, vecto
 bool VerifyScript(const CScript &scriptSig, const CScript &scriptPubKey, const CTransaction &txTo, unsigned int nIn,
                   int nHashType)
 {
-    vector<vector<unsigned char>> stack, stackCopy;
+    vector<vector<unsigned char> > stack, stackCopy;
     if (!EvalScript(stack, scriptSig, txTo, nIn, nHashType))
         return false;
 
@@ -2047,7 +2047,7 @@ static CScript CombineSignatures(CScript scriptPubKey, const CTransaction &txTo,
             CScript pubKey2(spk.begin(), spk.end());
 
             txnouttype txType2;
-            vector<vector<unsigned char>> vSolutions2;
+            vector<vector<unsigned char> > vSolutions2;
             Solver(pubKey2, txType2, vSolutions2);
             sigs1.pop_back();
             sigs2.pop_back();
@@ -2066,7 +2066,7 @@ CScript CombineSignatures(CScript scriptPubKey, const CTransaction &txTo, unsign
                           const CScript &scriptSig1, const CScript &scriptSig2)
 {
     txnouttype txType;
-    vector<vector<unsigned char>> vSolutions;
+    vector<vector<unsigned char> > vSolutions;
     Solver(scriptPubKey, txType, vSolutions);
 
     vector<valtype> stack1;

@@ -689,7 +689,7 @@ class AcceptedConnectionImpl : public AcceptedConnection
 
   private:
     SSLIOStreamDevice<Protocol> _d;
-    iostreams::stream<SSLIOStreamDevice<Protocol>> _stream;
+    iostreams::stream<SSLIOStreamDevice<Protocol> > _stream;
 };
 
 void ThreadRPCServer(void *parg)
@@ -718,7 +718,7 @@ void ThreadRPCServer(void *parg)
 
 // Forward declaration required for RPCListen
 template <typename Protocol, typename SocketAcceptorService>
-static void RPCAcceptHandler(boost::shared_ptr<basic_socket_acceptor<Protocol, SocketAcceptorService>> acceptor,
+static void RPCAcceptHandler(boost::shared_ptr<basic_socket_acceptor<Protocol, SocketAcceptorService> > acceptor,
                              ssl::context &context,
                              bool fUseSSL,
                              AcceptedConnection *conn,
@@ -728,7 +728,7 @@ static void RPCAcceptHandler(boost::shared_ptr<basic_socket_acceptor<Protocol, S
  * Sets up I/O resources to accept and handle a new connection.
  */
 template <typename Protocol, typename SocketAcceptorService>
-static void RPCListen(boost::shared_ptr<basic_socket_acceptor<Protocol, SocketAcceptorService>> acceptor,
+static void RPCListen(boost::shared_ptr<basic_socket_acceptor<Protocol, SocketAcceptorService> > acceptor,
                       ssl::context &context,
                       const bool fUseSSL)
 {
@@ -750,7 +750,7 @@ static void RPCListen(boost::shared_ptr<basic_socket_acceptor<Protocol, SocketAc
  * Accept and handle incoming connection.
  */
 template <typename Protocol, typename SocketAcceptorService>
-static void RPCAcceptHandler(boost::shared_ptr<basic_socket_acceptor<Protocol, SocketAcceptorService>> acceptor,
+static void RPCAcceptHandler(boost::shared_ptr<basic_socket_acceptor<Protocol, SocketAcceptorService> > acceptor,
                              ssl::context &context,
                              const bool fUseSSL,
                              AcceptedConnection *conn,
@@ -1154,7 +1154,7 @@ Object CallRPC(const string &strMethod, const Array &params)
     context.set_options(ssl::context::no_sslv2);
     asio::ssl::stream<asio::ip::tcp::socket> sslStream(io_service, context);
     SSLIOStreamDevice<asio::ip::tcp> d(sslStream, fUseSSL);
-    iostreams::stream<SSLIOStreamDevice<asio::ip::tcp>> stream(d);
+    iostreams::stream<SSLIOStreamDevice<asio::ip::tcp> > stream(d);
     if (!d.connect(GetArg("-rpcconnect", "127.0.0.1"), GetArg("-rpcport", itostr(GetDefaultRPCPort()))))
         throw runtime_error("couldn't connect to server");
 
